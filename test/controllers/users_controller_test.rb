@@ -27,8 +27,16 @@ class UsersControllerTest < ActionController::TestCase
     assert_select 'h1', 'Chá de bebê de Antonio e Marina'
   end
 
-  test "should get new" do
+  test 'new action with form for creation of user' do
     get :new
+
     assert_response :success
+
+    assert_select 'h1', 'Cadastre seu chá de bebê'
+
+    assert_select 'form[method=?][action=?]', 'post', users_path do
+      assert_select 'input[type=?][name=?]', 'text',  'user[name]'
+      assert_select 'input[type=?][name=?]', 'email', 'user[email]'
+    end
   end
 end

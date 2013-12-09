@@ -3,9 +3,10 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
   end
 
-  def create
+  def new
+    @user = User.new
   end
 
-  def new
+  def create
   end
 end
