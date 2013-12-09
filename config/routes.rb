@@ -1,7 +1,8 @@
 CodevBaby00::Application.routes.draw do
-  get "users/show"
+  get '/cha/:id'  => 'users#show'
   get "users/create"
   get "users/new"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

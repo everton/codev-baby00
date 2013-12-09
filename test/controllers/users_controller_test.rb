@@ -1,13 +1,14 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  test "should get show" do
-    get :show
-    assert_response :success
+  test 'routes for show at baby shower path' do
+    assert_routing({ method: :get, path: '/cha/XXX' },
+                   { controller: 'users', action: 'show',
+                     id: 'XXX' })
   end
 
-  test "should get create" do
-    get :create
+  test "should get show" do
+    get :show, id: 'XXX'
     assert_response :success
   end
 
@@ -15,5 +16,4 @@ class UsersControllerTest < ActionController::TestCase
     get :new
     assert_response :success
   end
-
 end
