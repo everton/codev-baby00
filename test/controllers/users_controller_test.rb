@@ -12,6 +12,11 @@ class UsersControllerTest < ActionController::TestCase
                    { controller: 'users', action: 'new' })
   end
 
+  test 'routes for creation of usuarios' do
+    assert_routing({ method: :post, path: '/users'    },
+                   { controller: 'users', action: 'create' })
+  end
+
   test "should get show" do
     get :show, id: 'XXX'
     assert_response :success
