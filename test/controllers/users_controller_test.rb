@@ -7,6 +7,11 @@ class UsersControllerTest < ActionController::TestCase
                      id: 'XXX' })
   end
 
+  test 'routes for new at home (root) path' do
+    assert_routing({ method: :get, path: '/'    },
+                   { controller: 'users', action: 'new' })
+  end
+
   test "should get show" do
     get :show, id: 'XXX'
     assert_response :success
