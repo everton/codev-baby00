@@ -1,5 +1,5 @@
 CodevBaby00::Application.routes.draw do
-  get '/cha/:id' => 'users#show'
+  get '/cha/:id' => 'users#show', as: :user
   post 'users'   => 'users#create'
 
   root 'users#new'

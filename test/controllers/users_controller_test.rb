@@ -39,4 +39,16 @@ class UsersControllerTest < ActionController::TestCase
       assert_select 'input[type=?][name=?]', 'email', 'user[email]'
     end
   end
+
+  test 'creation of user when posting correct data' do
+    assert_difference 'User.count' do
+      post :create, user: {
+        name: 'Joaozinho', email: 'john@example.com'
+      }
+    end
+
+    assert_redirected_to user_path(assigns(:user))
+
+    assert_equal 'Seu chá de bebê foi cadastrado.', flash[:notice]
+  end
 end
