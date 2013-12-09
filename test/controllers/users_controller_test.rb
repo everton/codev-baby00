@@ -51,4 +51,24 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_equal 'Seu chá de bebê foi cadastrado.', flash[:notice]
   end
+
+  test 'presentation of errors when trying to create with invalid data' do
+    assert_no_difference 'User.count' do
+      post :create, user: {
+        name: '     ', email: 'john@example.com'
+      }
+    end
+
+    assert_template :new, layout: :application
+
+    assert_select '#error_explanation' do
+      assert_select 'li', 'Name can&#39;t be blank'
+    end
+
+    assert_select 'form[method=?][action=?]', 'post', users_path do
+      assert_select 'input[type=?][name=?]', 'text',  'user[name]'
+      assert_select 'input[type=?][name=?][value=?]',
+        'email', 'user[email]', 'john@example.com'
+    end
+  end
 end

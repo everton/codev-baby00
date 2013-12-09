@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         if @user.save
           redirect_to @user, notice: 'Seu chá de bebê foi cadastrado.'
         else
-          raise 'TODO'
+          render action: 'new'
         end
       end
     end
@@ -24,8 +24,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user)
-      .permit(:name)
-      .permit(:email)
+    params.require(:user).permit(:name, :email)
   end
 end
