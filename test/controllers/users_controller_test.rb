@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
@@ -17,9 +19,12 @@ class UsersControllerTest < ActionController::TestCase
                    { controller: 'users', action: 'create' })
   end
 
-  test "should get show" do
-    get :show, id: 'XXX'
+  test 'show action' do
+    get :show, id: users(:antonio).id
+
     assert_response :success
+
+    assert_select 'h1', 'Chá de bebê de Antonio e Marina'
   end
 
   test "should get new" do
